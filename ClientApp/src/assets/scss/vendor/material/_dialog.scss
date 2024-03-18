@@ -6,12 +6,16 @@
             .mdc-dialog__surface {
                 padding: var(--ec-dialog-padding);
                 box-shadow: none;
-                @extend .ec-custom-scroll;
+                overflow: hidden;
+                // @extend .ec-custom-scroll;
             }
 
             .mdc-dialog__content {
                 padding: 0 calc(var(--ec-dialog-padding) / 2);
                 margin: 0 calc(-1 * var(--ec-dialog-padding) / 2);
+                height: calc(100vh - 151px);
+                overflow: auto;
+                @extend .ec-custom-scroll;
             }
         }
     }
@@ -65,7 +69,7 @@
             padding-top: 12px;
 
             .mat-mdc-button {
-                & + .mat-mdc-button {
+                &+.mat-mdc-button {
                     margin-left: 5px;
                 }
             }
@@ -520,7 +524,7 @@
         }
     }
 
-    .mat-mdc-dialog-content{
+    .mat-mdc-dialog-content {
         max-height: 100% !important;
     }
 }

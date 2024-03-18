@@ -331,45 +331,6 @@
     }
   }
 
-  &.ec-main-logout-btn {
-    width: calc(100% - 20px);
-    justify-content: flex-start;
-    background-color: transparent;
-    padding: 10px;
-    margin: 5px 10px;
-
-    .mdc-button__label {
-      display: flex;
-      align-items: center;
-
-      .text {
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 20px;
-        color: var(--primary-black);
-      }
-
-      .icon {
-        margin-right: 9px;
-
-        svg {
-          display: block;
-
-          * {
-            transition: all 0.4s;
-          }
-        }
-      }
-    }
-
-    &:hover {
-      svg {
-        * {
-          fill: var(--primary-color);
-        }
-      }
-    }
-  }
 
   &.ec-picker-btn {
     background-color: transparent;
@@ -1177,4 +1138,34 @@
   font-weight: 500;
   background: transparent;
   border: none;
+}
+
+.swal2-toast {
+  overflow: hidden;
+}
+
+.swal2-actions {
+  float: left;
+
+  .sweet-alert-confirm-button {
+    background-color: var(--primary-color) !important;
+    font-weight: 500;
+    font-size: 15px !important;
+    line-height: 25px;
+    color: var(--main-bg) !important;
+    padding: var(--ec-button-padding);
+    border: none;
+    border-radius: 6px !important;
+  }
+
+  .sweet-alert-cancel-button {
+    color: var(--color-3) !important;
+    background: transparent !important;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    padding: var(--ec-button-padding);
+    border: none;
+    border-radius: 6px;
+  }
 }

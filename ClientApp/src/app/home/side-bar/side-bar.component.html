@@ -5,17 +5,18 @@
   <nav class="nav-link-box">
     <ng-container *ngFor="let menu of menuData">
       <a class="nav-link" [routerLink]="menu.route" routerLinkActive="active" *ngIf="!menu.items?.length">
-        <img class="nav-icon" src="assets/images/icons/users.svg" alt="">
+        <i class="nav-icon fas fa-xl {{menu.icon}}"></i>
         <span class="nav-text">{{menu.name}}</span>
       </a>
       <div class="main-nav-link" (mouseenter)="showSubMenu($event)" *ngIf="menu.items?.length> 0">
         <div class="nav-link" routerLinkActive="active">
-          <img class="nav-icon" src="assets/images/icons/users.svg" alt="">
+          <i class="nav-icon fas fa-xl {{menu.icon}}"></i>
           <span class="nav-text">{{menu.name}}</span>
           <div class="sub-nav-link">
             <div class="nav-link-item-wrapper">
               <div class="nav-link-item" *ngFor="let subMenu of menu.items">
-                <a class="sub-nav-text" routerLinkActive="active" [routerLink]="subMenu.route">{{subMenu.name}}</a>
+                <a class="sub-nav-text" routerLinkActive="active" [routerLink]="subMenu.route"><i
+                    class="fas {{subMenu.icon}} mr10"></i>{{subMenu.name}}</a>
               </div>
             </div>
           </div>
@@ -23,4 +24,16 @@
       </div>
     </ng-container>
   </nav>
+  <div class="side-bar-footer">
+    <div class="sed-user-pfl d-flex justify-content-center align-items-center" (click)="openLogoutDialog($event)">
+      <!-- <img src="assets/images/user-img.jpg" alt=""> -->
+      <!-- Doctor generic profile icon -->
+      <!-- <span class="material-icons user-icon">person</span> -->
+      <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M8.97248 0.570312C8.40111 0.570312 7.80765 1.22061 7.82102 1.77035V8.97056C7.81196 9.60456 8.33206 10.1706 8.97248 10.1706C9.6129 10.1706 10.133 9.60456 10.1239 8.97056V1.77035C10.1417 1.04421 9.54385 0.570312 8.97248 0.570312ZM4.91957 3.5704C4.81389 3.59356 4.71154 3.63156 4.61655 3.68291C0.980951 5.56876 -0.132819 9.44056 0.828836 12.6457C1.79049 15.8498 4.8043 18.5703 8.93454 18.5703C13.0061 18.5703 16.0581 15.9914 17.0787 12.8329C18.098 9.67433 17.0084 5.84465 13.291 3.71987C12.7649 3.41554 12.0074 3.61198 11.6995 4.13232C11.3921 4.65266 11.5904 5.40304 12.1165 5.70737C15.0143 7.36318 15.6103 9.90077 14.8814 12.1576C14.1527 14.4143 12.0403 16.2827 8.93479 16.2827C5.81262 16.2827 3.7258 14.3024 3.02595 11.97C2.32586 9.63772 2.96899 7.11225 5.67711 5.70737C6.13612 5.4598 6.37902 4.87634 6.22957 4.38049C6.08024 3.88451 5.55421 3.5281 5.03326 3.56986C4.99532 3.56806 4.95738 3.56806 4.91957 3.56986V3.5704Z"
+          fill="white" />
+      </svg>
+    </div>
+  </div>
 </div>

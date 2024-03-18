@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpUrlEncodingCodec, HttpParams, HttpParameterCodec } from '@angular/common/http';
-import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, of, throwError } from 'rxjs';
 import { catchError, filter, finalize, switchMap, take, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { TokenService } from '../token.service';
 import { AuthService } from 'src/app/angular-app-services/auth.service';
+import { SweetAlertService } from '../sweet-alert.service';
+import { LoaderService } from '../loader.service';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -16,6 +18,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         private authService: AuthService,
         private route: Router,
         private tokenService: TokenService,
+        private sweetAlertService: SweetAlertService,
+        private loaderService: LoaderService
     ) { }
 
     intercept(
@@ -23,9 +27,11 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
         // show loader
+        this.loaderService.show();
         const expired = this.checkRefreshTokenExpied(request);
         if (expired === true) {
             // hide loader
+            this.loaderService.hide();
             return EMPTY;
         } else {
             request = this.addAuthenticationToken(request);
@@ -112,17 +118,26 @@ export class HttpRequestInterceptor implements HttpInterceptor {
             tap((event: any) => {
                 if (event instanceof HttpResponse) {
                     // hide loader
+                    this.loaderService.hide();
                 }
             }),
             catchError((error) => {
+                const errThrow = throwError(() => error);
                 if (error.status === 401) {
                     this.tokenService.logout();
                     this.route.navigate(['/login']);
                 }
-                return of(error);
-            }),
-            finalize(() => {
-                // hide loader
+                else if (error.error?.error?.message) {
+                    this.sweetAlertService.showError(error.error.error.message);
+                } else if (error.error?.message) {
+                    this.sweetAlertService.showError(error.error.message);
+                } else if (error.message) {
+                    this.sweetAlertService.showError(error.message);
+                } else {
+                    this.sweetAlertService.showError('Something went wrong! Please try again later.');
+                }
+                this.loaderService.hide();
+                return errThrow;
             })
         );
     }

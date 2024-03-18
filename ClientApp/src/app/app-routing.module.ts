@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { canActivateTeam } from './angular-app-services/permissions.service';
+import { HomeModule } from './home/home.module';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -10,9 +11,7 @@ const routes: Routes = [
   {
     path: '',
     canActivateChild: [canActivateTeam],
-    loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomeModule)/*,
-    canLoad: [AuthGuard],*/
+    loadChildren: () => HomeModule
   }
 ];
 

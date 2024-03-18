@@ -99,18 +99,7 @@ namespace Asha2.0.Controllers{
                 return BadRequest("Mismatched Id");
             }
 
-            var entityData = _context.User.IncludeRelated().FirstOrDefault(entity => entity.Id == id);
-            if (entityData == null)
-            {
-                return NotFound();
-            }
-
-            var propertiesToUpdate = typeof(User).GetProperties().Where(property => property.Name != "Id").ToList();
-            foreach (var property in propertiesToUpdate)
-            {
-                property.SetValue(entityData, property.GetValue(updatedEntity));
-            }
-
+            this._context.User.Update(updatedEntity);
             var returnData = this._context.SaveChanges();
             return Ok(returnData);
         }

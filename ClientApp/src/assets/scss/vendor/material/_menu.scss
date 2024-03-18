@@ -21,8 +21,18 @@
             font-size: 14px;
             line-height: 18px;
             color: var(--primary-black);
-            padding: 8px 32px 8px 16px;
+            padding: 8px 16px 8px 16px;
             transition: background-color .4s;
+
+            .mat-icon {
+                font-size: 20px;
+                margin-right: 3px;
+            }
+
+            .mat-mdc-menu-item-text {
+                font-size: 14px !important;
+                margin-bottom: 3px;
+            }
 
             .mdc-list-item__primary-text {
                 font-size: 14px;
@@ -68,7 +78,7 @@
             .mat-mdc-menu-item {
                 padding: 12px 16px;
 
-                + .mat-mdc-menu-item {
+                +.mat-mdc-menu-item {
                     border-top: 1px solid rgba(#d7dfe9, 0.5);
                 }
             }
@@ -91,4 +101,8 @@
             }
         }
     }
+}
+
+.mr10 {
+    margin-right: 10px;
 }

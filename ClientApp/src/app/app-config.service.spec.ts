@@ -58,7 +58,10 @@ describe('AppConfigService', () => {
                     apiUrl: '',
                     allow: true
                 }
-            ]
+            ],
+            app: {
+                title: ''
+            }
         };
 
         service.load().then(result => {

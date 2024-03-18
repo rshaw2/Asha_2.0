@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppConfigService } from './app-config.service';
 import { PermissionsService } from './angular-app-services/permissions.service';
 import { HttpRequestInterceptor } from './angular-app-services/Interceptor/http.interceptor';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpRequestInterceptor } from './angular-app-services/Interceptor/http.
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    HomeModule
+    HomeModule,
+    MatProgressBarModule
   ],
   exports: [
     BrowserModule

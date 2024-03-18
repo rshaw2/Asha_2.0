@@ -6,6 +6,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../angular-app-services/auth.service';
 import { TokenService } from '../angular-app-services/token.service';
 import { AppConfigService } from '../app-config.service';
+import { SweetAlertService } from '../angular-app-services/sweet-alert.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private tokenService: TokenService,
+    private sweetAlertService: SweetAlertService
   ) {
     if (!this.tokenService.isAuthTokenExpired()) {
       this.navigateTo();
@@ -58,6 +60,9 @@ export class LoginComponent implements OnInit {
           next: (token: any) => {
             this.tokenService.setToken(token);
             this.navigateTo();
+          },
+          error: () => {
+            this.sweetAlertService.showError('Invalid username or password');
           }
         });
     }

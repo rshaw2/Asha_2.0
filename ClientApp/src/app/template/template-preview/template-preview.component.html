@@ -1,6 +1,6 @@
 <div class="template-preview main-content-gap ec-custom-scroll">
     <div class="template-preview-header main-sub-nvabar">
-        <button class="ec-icon-gray-btn">
+        <button class="ec-icon-gray-btn" (click)="editRecord()">
             <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0)">
                     <path
@@ -16,41 +16,28 @@
             <span class="icon-gray-btn-text">Edit</span>
         </button>
     </div>
-    <div class="preview-tem-dtl-column-wrapper">
-        <div class="preview-tem-dtl-dp">
-            <img src="assets/images/icons/man-user-color-icon.svg" alt="Male">
-        </div>
-        <div class="preview-tem-dtl-base">
-            <div class="d-flex align-items-center">
-                <p class="font-title-medium">Somenath Ash</p>
-            </div>
-            <div class="preview-tem-bs-details d-flex justify-content-start align-items-center">
-                <p class="font-title-xs fw-normal color-primary-black detail-text">Designer</p>
-            </div>
-            <div class="row">
-                <div class="col-5">
-                    <p class="font-body-medium color-font-primary details-label">Mobile number</p>
-                    <p class="font-title-xs fw-normal color-font-secondary detail-text">9652101258</p>
-                </div>
-                <div class="col-7">
-                    <p class="font-body-medium color-font-primary details-label">Email</p>
-                    <p class="font-title-xs fw-normal color-font-secondary detail-text">somenathash&#64;abc.com</p>
-                </div>
-            </div>
-        </div>
-        <div class="preview-tem-dtl-base preview-tem-dtl-base-line">
-            <div class="d-flex align-items-center">
-                <p class="font-title-small">Address</p>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <p class="font-title-xs fw-normal color-font-secondary detail-text w-100">808 Cierra Street</p>
-                    <p class="font-title-xs fw-normal color-font-secondary detail-text w-100">Louisiana</p>
-                    <p class="font-title-xs fw-normal color-font-secondary detail-text w-100">Sigridston</p>
-                    <p class="font-title-xs fw-normal color-font-secondary detail-text w-100">4340</p>
-                    <p class="font-title-xs fw-normal color-font-secondary detail-text w-100">New Zeland</p>
+
+    <div class="preview-tem-dtl-column-wrapper main-section-right-wrapper row">
+        <ng-container *ngFor="let section of mappedData; let i=index">
+            <div class="preview-tem-dtl-base col-sm-12">
+                <div class="cards">
+                    <div class="d-flex align-items-center card-title">
+                        <p class="section-header tuncate-text">
+                            <i *ngIf="section.icon" class="fas {{section.icon}} mr10"></i>{{section.name}}
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12" *ngFor="let field of section.fields">
+                            <div class="preview-data">
+                                <p *ngIf="!field.icon" class="font-body-medium color-font-preview">{{field.label}}</p>
+                                <p class="font-title-xs fw-normal color-font-preview">
+                                    <i *ngIf="field.icon" class="fas {{field.icon}} mr10"></i>{{field.value}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
     </div>
 </div>
