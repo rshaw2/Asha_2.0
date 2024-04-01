@@ -11,7 +11,7 @@
         "appInsights": false
     },
     "api": {
-        "url": "https://ntlowcodeapi.azurewebsites.net"
+        "url": "https://localhost:12345"
     },
     "app": {
         "title": "Asha 2.0"
